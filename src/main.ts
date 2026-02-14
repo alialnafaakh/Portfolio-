@@ -65,7 +65,7 @@ cards.forEach(card => {
 // --- Typewriter Effect ---
 const words = ["Ali", "a Creative Developer", "a Problem Solver"];
 let i = 0;
-let timer: number;
+// let timer: number;
 
 function typeWriter() {
   const element = document.getElementById('typewriter');
@@ -92,7 +92,7 @@ function typeWriter() {
     typeSpeed = 500;
   }
 
-  timer = setTimeout(typeWriter, typeSpeed);
+  setTimeout(typeWriter, typeSpeed);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
