@@ -290,6 +290,48 @@ header {
   height: 20px;
 }
 
+/* New Section Styles */
+.value-card h3,
+.cert-card h3,
+.hobby-card h3 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.value-card p,
+.hobby-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.big-tags span {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.cert-issuer {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.cert-date {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
 /* Sections */
 section {
   padding: 6rem 0;
