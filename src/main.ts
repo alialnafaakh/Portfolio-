@@ -63,7 +63,7 @@ cards.forEach(card => {
 });
 
 // --- Typewriter Effect ---
-const words = ["Ali", "a Creative Developer", "a Problem Solver"];
+const words = ["know", "a Creative Developer", "a Problem Solver"];
 let i = 0;
 // let timer: number;
 
