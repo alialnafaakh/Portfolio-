@@ -37,7 +37,8 @@ body {
   left: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  z-index: 9999;
+  z-index: 10000;
+  /* Increased z-index */
   pointer-events: none;
 }
 
@@ -50,7 +51,8 @@ body {
   left: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  z-index: 9998;
+  z-index: 9999;
+  /* Increased z-index */
   pointer-events: none;
   transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
@@ -423,4 +425,24 @@ footer {
   * {
     cursor: auto;
   }
+}
+
+/* Profile Image */
+.profile-img {
+  width: 340px;
+  /* Adjust size as needed */
+  height: 340px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1.5rem auto;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
 }

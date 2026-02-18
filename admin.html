@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+
+        .admin-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .project-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .admin-card {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+        }
+
+        .btn-danger {
+            background: rgba(255, 50, 50, 0.2);
+            color: #ff5050;
+            border: 1px solid rgba(255, 50, 50, 0.3);
+        }
+
+        .btn-success {
+            background: rgba(50, 255, 50, 0.2);
+            color: #50ff50;
+            border: 1px solid rgba(50, 255, 50, 0.3);
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mouse Interaction Elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <div id="spotlight-bg"></div>
+
+    <header>
+        <nav class="glass-nav">
+            <div class="logo">Admin Dashboard<span class="dot">.</span></div>
+            <ul class="nav-links">
+                <li><a href="/" class="hover-trigger">Back to Home</a></li>
+                <li><a href="#" id="logout-btn" class="hover-trigger" style="color: #ff5050;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-header">
+            <h2 id="page-title">Manage Projects</h2>
+            <div class="tabs">
+                <button id="tab-projects" class="btn primary hover-trigger">Projects</button>
+                <button id="tab-content" class="btn secondary hover-trigger">Content</button>
+                <button id="tab-inbox" class="btn secondary hover-trigger">Inbox</button>
+            </div>
+            <button id="add-project-btn" class="btn primary hover-trigger">Add New Project</button>
+            <button id="save-content-btn" class="btn primary hover-trigger" style="display: none;">Save Content</button>
+            <button id="refresh-inbox-btn" class="btn primary hover-trigger" style="display: none;">Refresh
+                Inbox</button>
+        </div>
+
+        <!-- Projects View -->
+        <div id="view-projects">
+            <div id="project-editor" class="glass-card admin-card" style="display: none; margin-bottom: 2rem;">
+                <h3 id="editor-title">Edit Project</h3>
+                <form id="project-form">
+                    <input type="hidden" id="project-id">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="project-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="project-desc" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" id="project-tags" required>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" class="btn primary hover-trigger">Save Project</button>
+                        <button type="button" id="cancel-edit" class="btn secondary hover-trigger">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="admin-project-list" class="project-list">
+                <!-- Projects loaded here -->
+            </div>
+        </div>
+
+        <!-- Content View -->
+        <div id="view-content" style="display: none;">
+            <div class="glass-card admin-card">
+                <h3>Hero Section</h3>
+                <div class="form-group">
+                    <label>Profile Image URL</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="hero-profile-image-input" placeholder="/uploads/..." style="flex: 1;">
+                        <label for="hero-image-upload" class="btn secondary hover-trigger"
+                            style="cursor: pointer; padding: 0.8rem 1rem; margin: 0; white-space: nowrap;">
+                            Upload
+                            <input type="file" id="hero-image-upload" accept="image/*" style="display: none;">
+                        </label>
+                    </div>
+                    <small style="color: rgba(255,255,255,0.5); display: block; margin-top: 0.5rem;">Click 'Upload' to
+                        select a file from your computer.</small>
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="hero-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Highlight (Gradient Text)</label>
+                    <input type="text" id="hero-highlight-input">
+                </div>
+                <div class="form-group">
+                    <label>Subtitle Prefix</label>
+                    <input type="text" id="hero-subtitle-prefix-input">
+                </div>
+                <div class="form-group">
+                    <label>Typewriter Words (comma separated)</label>
+                    <input type="text" id="hero-typewriter-input">
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>Social Links</h3>
+                <div class="form-group">
+                    <label>GitHub URL</label>
+                    <input type="text" id="social-github-input" placeholder="https://github.com/...">
+                </div>
+                <div class="form-group">
+                    <label>LinkedIn URL</label>
+                    <input type="text" id="social-linkedin-input" placeholder="https://linkedin.com/in/...">
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>About Section</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="about-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="about-desc-input" rows="4"></textarea>
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>Market Value Section</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="market-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Items (JSON format for now)</label>
+                    <textarea id="market-items-input" rows="6" style="font-family: monospace;"></textarea>
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>Skills Section</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="skills-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Categories (JSON format)</label>
+                    <textarea id="skills-items-input" rows="6" style="font-family: monospace;"></textarea>
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>Certifications</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="certs-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Items (JSON format)</label>
+                    <textarea id="certs-items-input" rows="6" style="font-family: monospace;"></textarea>
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>Hobbies</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="hobbies-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Items (JSON format)</label>
+                    <textarea id="hobbies-items-input" rows="6" style="font-family: monospace;"></textarea>
+                </div>
+            </div>
+
+            <div class="glass-card admin-card" style="margin-top: 1rem;">
+                <h3>Contact</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="contact-title-input">
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="contact-btn-input">
+                </div>
+            </div>
+        </div>
+
+        <!-- Inbox View -->
+        <div id="view-inbox" style="display: none;">
+            <div id="inbox-list" class="project-list">
+                <!-- Messages loaded here -->
+                <p style="text-align: center; color: rgba(255,255,255,0.5);">Loading messages...</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/src/admin.ts"></script>
+</body>
+
+</html>

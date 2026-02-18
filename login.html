@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            /* Fix for width: 100% overflowing */
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #ff5050;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            min-height: 1.2em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.visible {
+            opacity: 1;
+        }
+
+        /* Background elements */
+        #spotlight-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="spotlight-bg"></div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h1 class="login-title">Admin Access</h1>
+            <p class="login-subtitle">Please enter your password to continue</p>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+                <div id="error-msg" class="error-message">Invalid username or password</div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { login, isAuthenticated } from '/src/auth.ts';
+
+        // Redirect if already logged in
+        if (isAuthenticated()) {
+            window.location.href = '/admin.html';
+        }
+
+        const loginForm = document.getElementById('login-form');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const errorMsg = document.getElementById('error-msg');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (login(username, password)) {
+                window.location.href = '/admin.html';
+            } else {
+                errorMsg.classList.add('visible');
+                // Clear password but keep username
+                passwordInput.value = '';
+                passwordInput.focus();
+
+                // Hide error after 3 seconds
+                setTimeout(() => {
+                    errorMsg.classList.remove('visible');
+                }, 3000);
+            }
+        });
+
+        // Add spotlight effect
+        document.addEventListener('mousemove', (e) => {
+            const spotlight = document.getElementById('spotlight-bg');
+            const x = e.clientX;
+            const y = e.clientY;
+            spotlight.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.05), transparent 40%)`;
+        });
+    </script>
+</body>
+
+</html>

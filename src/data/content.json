@@ -1,0 +1,99 @@
+{
+  "hero": {
+    "title": "Welcome to",
+    "profileImage": "/uploads/fefef.JPG",
+    "highlight": "My Portfolio",
+    "subtitlePrefix": "Figure  out my ",
+    "typewriterWords": [
+      "Skills",
+      "Projects"
+    ],
+    "ctaPrimary": "Get to Know Me",
+    "ctaSecondary": "View My Work",
+    "social": {
+      "github": "https://github.com/alialnafaakh",
+      "linkedin": "https://www.linkedin.com/in/ali-al-nafaakh"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I am a passionate developer focusing on building modern, responsive, and user-friendly web applications. I love turning complex problems into simple, beautiful, and intuitive designs."
+  },
+  "marketValue": {
+    "title": "My Market Value",
+    "items": [
+      {
+        "title": "Problem Solver",
+        "description": "I don't just write code; I find efficient solutions to complex business problems."
+      },
+      {
+        "title": "Fast Learner",
+        "description": "Adapting to new technologies and frameworks rapidly to stay ahead of the curve."
+      },
+      {
+        "title": "User-Centric",
+        "description": "Creating intuitive experiences that prioritize user engagement and satisfaction."
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": [
+      {
+        "title": "Technical IT support",
+        "items": [
+          "React",
+          "Windows"
+        ]
+      },
+      {
+        "title": "Full stack web development",
+        "items": [
+          "Node.js",
+          "HTML5",
+          "CSS3",
+          "Git",
+          "GitHub",
+          "TypeScript",
+          "VS Code"
+        ]
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Certifications",
+    "items": [
+      {
+        "title": "Generative AI: Prompt Engineering Basics",
+        "issuer": "IBM",
+        "date": "2026"
+      },
+      {
+        "title": "Technical Support Fundamentals",
+        "issuer": "Google",
+        "date": "2025"
+      }
+    ]
+  },
+  "hobbies": {
+    "title": "Hobbies & Interests",
+    "items": [
+      {
+        "title": "Reading",
+        "description": "I like to read about AI and new technology."
+      },
+      {
+        "title": "Sports",
+        "description": "I always say that if I want a strong mind, I have to maintain a healthy body."
+      },
+      {
+        "title": "Finance",
+        "description": "I like to read about finance and investment."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's Connect",
+    "formButton": "Send Message"
+  }
+}

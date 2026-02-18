@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "title": "Project Shoka",
+        "description": "A modern web application built with Next.js and TailwindCSS.",
+        "tags": [
+            "Next.js",
+            "React",
+            "Tailwind"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Portfolio V1",
+        "description": "The first iteration of my personal portfolio showcasing my early work.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JS"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "E-Commerce Dashboard",
+        "description": "A comprehensive dashboard for managing online store analytics.",
+        "tags": [
+            "Vue",
+            "Node.js"
+        ]
+    }
+]

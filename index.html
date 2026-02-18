@@ -32,13 +32,15 @@
   <main>
     <section id="hero">
       <div class="hero-content" data-tilt>
-        <h1>Welcome to <span class="gradient-text">My Portfolio</span></h1>
-        <p class="subtitle">Get to <span id="typewriter"></span></p>
+        <img id="hero-profile-img" src="" alt="Profile" class="profile-img" style="display: none;">
+        <h1 id="hero-title">Welcome to <span class="gradient-text">My Portfolio</span></h1>
+        <p class="subtitle"><span id="hero-subtitle-prefix">Get to </span><span id="typewriter"></span></p>
         <div class="cta-buttons">
-          <a href="#about" class="btn primary hover-trigger">Get to Know Me</a>
-          <a href="#projects" class="btn secondary hover-trigger">View My Work</a>
+          <a href="#about" id="hero-cta-primary" class="btn primary hover-trigger">Get to Know Me</a>
+          <a href="#projects" id="hero-cta-secondary" class="btn secondary hover-trigger">View My Work</a>
         </div>
         <div class="social-links">
+          <!-- Social links kept static for now as they weren't in the initial JSON structure, can be added later if needed -->
           <a href="#" target="_blank" class="social-btn hover-trigger" aria-label="GitHub">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -61,9 +63,10 @@
 
     <section id="about">
       <div class="container">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title" id="about-title">About Me</h2>
         <div class="glass-card" data-tilt>
-          <p>I am a passionate developer focusing on building modern, responsive, and user-friendly web applications. I
+          <p id="about-description">I am a passionate developer focusing on building modern, responsive, and
+            user-friendly web applications. I
             love turning complex problems into simple, beautiful, and intuitive designs.</p>
         </div>
       </div>
@@ -71,49 +74,18 @@
 
     <section id="market-value">
       <div class="container">
-        <h2 class="section-title">My Market Value</h2>
-        <div class="grid">
-          <div class="glass-card value-card" data-tilt>
-            <h3>Problem Solver</h3>
-            <p>I don't just write code; I find efficient solutions to complex business problems.</p>
-          </div>
-          <div class="glass-card value-card" data-tilt>
-            <h3>Fast Learner</h3>
-            <p>Adapting to new technologies and frameworks rapidly to stay ahead of the curve.</p>
-          </div>
-          <div class="glass-card value-card" data-tilt>
-            <h3>User-Centric</h3>
-            <p>Creating intuitive experiences that prioritize user engagement and satisfaction.</p>
-          </div>
+        <h2 class="section-title" id="market-value-title">My Market Value</h2>
+        <div class="grid" id="market-value-grid">
+          <!-- Dynamic Content -->
         </div>
       </div>
     </section>
 
     <section id="skills">
       <div class="container">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-          <div class="glass-card skill-category" data-tilt>
-            <h3>Technical IT support</h3>
-            <div class="tags big-tags">
-              <span></span>
-              <span>React</span>
-              <span></span>
-              <span>Windows</span>
-            </div>
-          </div>
-          <div class="glass-card skill-category" data-tilt>
-            <h3>Full stack web development</h3>
-            <div class="tags big-tags">
-              <span>Node.js</span>
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>Git</span>
-              <span>GitHub</span>
-              <span>TypeScript</span>
-              <span>VS Code</span>
-            </div>
-          </div>
+        <h2 class="section-title" id="skills-title">Technical Skills</h2>
+        <div class="skills-grid" id="skills-grid">
+          <!-- Dynamic Content -->
         </div>
       </div>
     </section>
@@ -121,87 +93,33 @@
     <section id="projects">
       <div class="container">
         <h2 class="section-title">Selected Projects</h2>
-        <div class="grid">
-          <!-- Project 1 -->
-          <div class="glass-card project-card" data-tilt data-spotlight>
-            <div class="project-info">
-              <h3>Project Shoka</h3>
-              <p>A modern web application built with Next.js and TailwindCSS.</p>
-              <div class="tags">
-                <span>Next.js</span>
-                <span>React</span>
-                <span>Tailwind</span>
-              </div>
-            </div>
-          </div>
-          <!-- Project 2 -->
-          <div class="glass-card project-card" data-tilt data-spotlight>
-            <div class="project-info">
-              <h3>Portfolio V1</h3>
-              <p>The first iteration of my personal portfolio showcasing my early work.</p>
-              <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JS</span>
-              </div>
-            </div>
-          </div>
-          <!-- Project 3 -->
-          <div class="glass-card project-card" data-tilt data-spotlight>
-            <div class="project-info">
-              <h3>E-Commerce Dashboard</h3>
-              <p>A comprehensive dashboard for managing online store analytics.</p>
-              <div class="tags">
-                <span>Vue</span>
-                <span>Node.js</span>
-              </div>
-            </div>
-          </div>
+        <div id="projects-container" class="grid">
+          <!-- Projects will be loaded dynamically -->
         </div>
       </div>
     </section>
 
     <section id="certificates">
       <div class="container">
-        <h2 class="section-title">Certifications</h2>
-        <div class="grid">
-          <div class="glass-card cert-card" data-tilt>
-            <h3>Generative AI: Prompt Engineering Basics</h3>
-            <p class="cert-issuer">IBM</p>
-            <p class="cert-date">2026</p>
-          </div>
-          <div class="glass-card cert-card" data-tilt>
-            <h3>Technical Support Fundamentals</h3>
-            <p class="cert-issuer">Google</p>
-            <p class="cert-date">2025</p>
-          </div>
+        <h2 class="section-title" id="certificates-title">Certifications</h2>
+        <div class="grid" id="certificates-grid">
+          <!-- Dynamic Content -->
         </div>
       </div>
     </section>
 
     <section id="hobbies">
       <div class="container">
-        <h2 class="section-title">Hobbies & Interests</h2>
-        <div class="grid">
-          <div class="glass-card hobby-card" data-tilt>
-            <h3>Reading</h3>
-            <p>I like to read about AI and new technology.</p>
-          </div>
-          <div class="glass-card hobby-card" data-tilt>
-            <h3>Sports</h3>
-            <p>I always say that if I want a strong mind, I have to maintain a healthy body.</p>
-          </div>
-          <div class="glass-card hobby-card" data-tilt>
-            <h3>Finance</h3>
-            <p>I like to read about finance and investment.</p>
-          </div>
+        <h2 class="section-title" id="hobbies-title">Hobbies & Interests</h2>
+        <div class="grid" id="hobbies-grid">
+          <!-- Dynamic Content -->
         </div>
       </div>
     </section>
 
     <section id="contact">
       <div class="container">
-        <h2 class="section-title">Let's Connect</h2>
+        <h2 class="section-title" id="contact-title">Let's Connect</h2>
         <div class="glass-card contact-form" data-tilt>
           <form id="contactForm">
             <div class="form-group">
@@ -213,7 +131,7 @@
             <div class="form-group">
               <textarea rows="5" placeholder="Message" required class="hover-trigger"></textarea>
             </div>
-            <button type="submit" class="btn primary hover-trigger">Send Message</button>
+            <button type="submit" class="btn primary hover-trigger" id="contact-btn">Send Message</button>
           </form>
         </div>
       </div>
