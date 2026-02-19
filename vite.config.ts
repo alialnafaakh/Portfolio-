@@ -123,7 +123,7 @@ export default defineConfig({
                 server.middlewares.use('/api/get-messages', (req: IncomingMessage, res: ServerResponse, next) => {
                     if (req.method === 'GET') {
                         const messagesPath = path.resolve(process.cwd(), 'src/data/messages.json');
-                        fs.readFile(messagesPath, 'utf8', (err, data) => {
+                        fs.readFile(messagesPath, 'utf8', (_err, data) => {
                             res.statusCode = 200;
                             res.setHeader('Content-Type', 'application/json');
                             res.end(data || '[]');
