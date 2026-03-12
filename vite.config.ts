@@ -5,6 +5,7 @@ import path from 'path';
 import { IncomingMessage, ServerResponse } from 'http';
 
 export default defineConfig({
+    base: './', // Ensure relative paths for assets
     plugins: [
         {
             name: 'connect-api',
