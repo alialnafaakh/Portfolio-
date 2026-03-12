@@ -1,5 +1,9 @@
+let initialized = false;
 
 export function initCursor() {
+    if (initialized) return;
+    initialized = true;
+    
     // Create cursor elements if they don't exist
     let cursorDot = document.getElementById('cursor-dot');
     let cursorOutline = document.getElementById('cursor-outline');
