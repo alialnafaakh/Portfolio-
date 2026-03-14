@@ -5,13 +5,19 @@ import type { QueryResult } from 'pg';
 export async function GET() {
     try {
         const [about, market, skills, certs, hobbies] = await withDb(async db => {
-            return Promise.all([
-                db.query('SELECT * FROM about_me ORDER BY id ASC LIMIT 1').then((r: QueryResult) => r.rows[0] || null),
-                db.query('SELECT * FROM my_market_value ORDER BY sort_order ASC').then((r: QueryResult) => r.rows),
-                db.query('SELECT * FROM technical_skills ORDER BY sort_order ASC').then((r: QueryResult) => r.rows),
-                db.query('SELECT * FROM certifications ORDER BY sort_order ASC').then((r: QueryResult) => r.rows),
-                db.query('SELECT * FROM hobbies_and_interests ORDER BY sort_order ASC').then((r: QueryResult) => r.rows),
-            ]);
+            const rAbout = await db.query('SELECT * FROM about_me ORDER BY id ASC LIMIT 1');
+            const rMarket = await db.query('SELECT * FROM my_market_value ORDER BY sort_order ASC');
+            const rSkills = await db.query('SELECT * FROM technical_skills ORDER BY sort_order ASC');
+            const rCerts = await db.query('SELECT * FROM certifications ORDER BY sort_order ASC');
+            const rHobbies = await db.query('SELECT * FROM hobbies_and_interests ORDER BY sort_order ASC');
+            
+            return [
+                rAbout.rows[0] || null,
+                rMarket.rows,
+                rSkills.rows,
+                rCerts.rows,
+                rHobbies.rows
+            ];
         });
 
         const skillCategories: Record<string, string[]> = {};
@@ -47,7 +53,7 @@ export async function GET() {
             },
             hobbies: {
                 title: 'Hobbies & Interests',
-                items: hobbies.map((h: any) => ({ title: h.title, description: h.description }))
+                items: hobbies.map((h: any) => ({ title: h.title, description: h.description, emoji: h.emoji || null }))
             }
         });
     } catch (e: any) {
