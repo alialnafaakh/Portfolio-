@@ -23,7 +23,7 @@ export default function Home() {
     });
 
     // 3. Typewriter effect
-    let words = ["know me", "a Creative Developer", "a Problem Solver"];
+    let words = ["know", "me"];
     let i = 0;
     let timer: NodeJS.Timeout;
     let isDeleting = false;
