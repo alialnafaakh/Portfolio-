@@ -23,7 +23,7 @@ export default function Home() {
     });
 
     // 3. Typewriter effect
-    let words = ["know", "a Creative Developer", "a Problem Solver"];
+    let words = ["know me", "a Creative Developer", "a Problem Solver"];
     let i = 0;
     let timer: NodeJS.Timeout;
     let isDeleting = false;
@@ -164,7 +164,7 @@ export default function Home() {
             <h1>Welcome to <span className="gradient-text">My Portfolio</span></h1>
             <p className="subtitle">
               <span>Get to </span>
-              <span ref={typewriterRef}></span>
+              <span ref={typewriterRef} id="typewriter" className="blue-cool-text"></span>
             </p>
             <div className="cta-buttons">
               <a href="#about" className="btn primary hover-trigger">Get to Know Me</a>
